@@ -27,9 +27,10 @@ public class NavigatActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("gps"));
+        tabLayout.addTab(tabLayout.newTab().setText("매칭 목록"));
+        tabLayout.addTab(tabLayout.newTab().setText("업무 일지"));
+        tabLayout.addTab(tabLayout.newTab().setText("근무 일정"));
+        tabLayout.addTab(tabLayout.newTab().setText("gps(없애야함ㅜ)"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
