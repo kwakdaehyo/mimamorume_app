@@ -21,17 +21,20 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TabFragment1 tab1 = new TabFragment1();
+                FragmentMatching tab1 = new FragmentMatching();
                 return tab1;
             case 1:
-                TabFragment2 tab2 = new TabFragment2();
+                FragmentWork tab2 = new FragmentWork();
                 return tab2;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();
+                FragmentSchedule tab3 = new FragmentSchedule();
                 return tab3;
             case 3:
-                TabFragment4 tab4 = new TabFragment4();
+                FragmentCamera tab4 = new FragmentCamera();
                 return tab4;
+            case 4:
+                TabFragment5 tab5 = new TabFragment5();
+                return tab5;
             default:
                 return null;
         }

@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.bon.project_7.MainActivity"></activity>
+        <activity android:name="com.example.bon.project_7.ExplanationActivity"></activity>
         <activity android:name="com.example.bon.project_7.LoginActivity"></activity>
 
         <activity android:name="com.example.bon.project_7.NavigatActivity"
@@ -25,6 +25,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBigHXY1mM8v8q-cD5MZa6WvxFKbgO-BrA" />
+        <activity android:name="com.example.bon.project_7.WorkContent"></activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

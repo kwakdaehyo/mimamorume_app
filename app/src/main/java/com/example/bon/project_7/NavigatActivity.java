@@ -27,10 +27,16 @@ public class NavigatActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("매칭 목록"));
-        tabLayout.addTab(tabLayout.newTab().setText("업무 일지"));
-        tabLayout.addTab(tabLayout.newTab().setText("근무 일정"));
-        tabLayout.addTab(tabLayout.newTab().setText("gps(없애야함ㅜ)"));
+
+        tabLayout.addTab(tabLayout.newTab().setText("매칭 목록").setIcon(android.R.drawable.ic_lock_idle_charging));
+        tabLayout.addTab(tabLayout.newTab().setText("업무 일지").setIcon(android.R.drawable.ic_menu_report_image));
+        tabLayout.addTab(tabLayout.newTab().setText("근무 일정").setIcon(android.R.drawable.ic_menu_my_calendar));
+        tabLayout.addTab(tabLayout.newTab().setText("사진 목록").setIcon(android.R.drawable.ic_menu_camera));
+        tabLayout.addTab(tabLayout.newTab().setText("GPS 위치").setIcon(android.R.drawable.ic_dialog_alert));
+//        tabLayout.addTab(tabLayout.newTab().setText("업무 일지"));
+//        tabLayout.addTab(tabLayout.newTab().setText("근무 일정"));
+//        tabLayout.addTab(tabLayout.newTab().setText("사진 목록"));
+//        tabLayout.addTab(tabLayout.newTab().setText("GPS 위치"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -129,7 +135,7 @@ public class NavigatActivity extends AppCompatActivity
 
     public void Logout() {
 
-        Intent intent = new Intent(NavigatActivity.this, MainActivity.class);
+        Intent intent = new Intent(NavigatActivity.this, ExplanationActivity.class);
         startActivity(intent);
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
