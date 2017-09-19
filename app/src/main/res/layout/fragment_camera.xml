@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+    <RelativeLayout
+        android:id="@+id/buttonpilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <Button
+            android:id="@+id/TargetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:background="#ffffff"
+            android:text="対象者検索" />
+
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/TargetButton"
+            android:background="@drawable/bottom_border"
+            android:hint="対象者名前"
+            android:paddingBottom="12dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="12dp"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonpilter">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="asdadasdasdasd"/>
+
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="登録された書き込みがありません。"
+            android:textSize="20dp"
+            android:visibility="gone" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="스냅샷 목록"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="bottom|end"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="400dp"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
 
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="fill_parent"--><!--android:layout_height="fill_parent"--><!--android:orientation="vertical" >-->
+
+    <!--<TextView--><!--android:id="@+id/textView1"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="스냅샷 촬영 목록"--><!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
+
+    <!--<GridView--><!--android:id="@+id/gridView1"--><!--android:layout_width="fill_parent"--><!--android:layout_height="320dp"--><!--android:layout_marginTop="30dp"--><!--android:horizontalSpacing="10dp"--><!--android:numColumns="3"--><!--android:stretchMode="columnWidth">--><!--</GridView>--><!--<LinearLayout--><!--android:layout_width="fill_parent"--><!--android:layout_height="fill_parent"--><!--android:orientation="horizontal"--><!--android:gravity="center">--><!--<Button--><!--android:id="@+id/camera_btn"--><!--android:onClick="btnStart"--><!--android:layout_width="fill_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_weight="1"/>-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="-"--><!--android:id="@+id/tv"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->

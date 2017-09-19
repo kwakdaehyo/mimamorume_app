@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<ImageView-->
+        <!--android:id="@+id/CameraDetail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+    <!---->
+    <com.github.chrisbanes.photoview.PhotoView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CameraDetail"/>
+
+    <TextView
+        android:id="@+id/TargetDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/CameraDetail"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:text="対象者 : "/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/TargetDetail"
+        android:layout_below="@+id/CameraDetail"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:text="이현필"
+        android:id="@+id/ImageNameTextView"
+
+        />
+    <TextView
+        android:id="@+id/CameraNameDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/TargetDetail"
+        android:text="カメラ : "/>
+    <TextView
+        android:id="@+id/CameraName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/CameraNameDetail"
+        android:layout_below="@+id/ImageNameTextView"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:text="time"/>
+
+    <TextView
+        android:id="@+id/CameraDateDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/CameraNameDetail"
+        android:text="日付 : "/>
+    <TextView
+        android:id="@+id/CameraDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/CameraNameDetail"
+        android:layout_below="@+id/CameraName2"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:text="date"/>
+
+</RelativeLayout>

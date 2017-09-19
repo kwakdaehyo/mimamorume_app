@@ -1,125 +1,112 @@
 package com.example.bon.project_7;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.bon.project_7.target.TargetGps;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by kdh on 2017-03-27.
  */
 
-public class LodingActivity extends Activity{
-    EditText userId;
-    EditText userPass;
-    Button btnLogin;
-    phpDown task;
-    TextView txtView;
-    ArrayList<ListItem> listItem = new ArrayList<ListItem>();
-    String lgId , lgPass;
-    String loginId, loginPass;
+public class LodingActivity extends Activity {
+    //    public static final String USER_ID = "USER_ID";
+//    public static final String PASSWORD = "PASSWORD";
+    private static final String LOGIN_URL = "http://133.130.99.167/mimamo/public/auth/applogin";
+//    http://10.0.2.2/gps/gps_insert.php
+//    private static final String TAG_RESULTS = "result";
+//    private static final String TAG_ID = "id";
+//    private static final String TAG_PASS = "title";
 
+
+    JSONArray user = null;
+    ArrayList<HashMap<String, String>> personList;
+
+
+    private Button btnLogin;
+    String userid, userpass;
+    String loginId, loginPass, targetNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        task = new phpDown();
-        task.execute("http://10.0.2.2/user/select.php?id=test&pass=1234");
+//        NetworkUtil.setNetworkPolicy();
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        loginId = auto.getString("inputId", null);
+        loginPass = auto.getString("inputPass", null);
+        targetNumber = auto.getString("TargetNumber", null);
 
-        loginId = auto.getString("inputId",null);
-        loginPass = auto.getString("inputPass",null);
+        userLogin(userid, userpass);
     }
-    private class phpDown extends AsyncTask<String,Integer,String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            //문자열을 쉽게 수정하기 위해 사용한다
-            StringBuilder jsonHtml = new StringBuilder();
-            try {
-                //연결 url 설정
-                URL url = new URL(urls[0]);
-                //커넥션 객체 생성
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                //HttpURLConnection 객체를 통해서 특정 URL의 html코드를 읽음
 
-                if (conn != null) {
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
 
-                    // 연결되었음 코드가 리턴되면
-                    Log.i("getResponseCode",Integer.toString(conn.getResponseCode()));
-                    Log.i("HttpURLConnection",Integer.toString(HttpURLConnection.HTTP_OK));
-                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        //conn.getResponseCode()의 Result 코드 값으로 연결상태를 확인
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+    private void userLogin(final String userid, final String userpass) {
+        class UserLoginClass extends AsyncTask<String, Void, String> {
 
-                        for (; ; ) {
-                            //웹상에 보여지는 텍스트를 라인 단위로 읽어 저장
-                            String line = br.readLine();
-                            if (line == null) break;
-                            // 저장된 텍스트 라인을 jsonHtml에 붙여 넣음
-                            jsonHtml.append(line + "\n");
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                if (s.equalsIgnoreCase("success")) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
-                        br.close();
-                    }
-                    conn.disconnect();
-                }
-            } catch(Exception ex) {
-                Log.e("LOG4 ERROR", ex.toString());
-                ex.printStackTrace();
-            }
-            Log.i("jsonResult:",jsonHtml.toString());
-            return jsonHtml.toString();
-        }
+                    }, 2000);
+                    Toast.makeText(LodingActivity.this, loginId + "自動ログイン", Toast.LENGTH_SHORT).show();
 
+                } else if (targetNumber != null) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getBaseContext(), TargetGps.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, 2000);
+                    Toast.makeText(LodingActivity.this, "対象者様自動ログイン", Toast.LENGTH_SHORT).show();
 
-        protected void onPostExecute(String str) {
-            userId = (EditText) findViewById(R.id.loginId);
-            userPass = (EditText) findViewById(R.id.loginPass);
-            btnLogin = (Button) findViewById(R.id.btnLogin);
-
-            try {
-                JSONObject root = new JSONObject(str);
-                JSONArray ja = root.getJSONArray("result");
-
-                for (int i = 0; i < ja.length(); i++) {
-                    JSONObject jo = ja.getJSONObject(i);
-                    lgId = jo.getString("id");
-                    lgPass = jo.getString("pass");
-
-                    listItem.add(new ListItem(lgId, lgPass));
-                }
-                if (loginId != null && loginPass != null) {
-                    if (loginId.equals(lgId) && loginPass.equals(lgPass)) {
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent(getBaseContext(), NavigatActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }, 2000);
-                        Toast.makeText(LodingActivity.this, loginId + "자동 로그인", Toast.LENGTH_SHORT).show();
-                    }
                 } else {
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -131,22 +118,29 @@ public class LodingActivity extends Activity{
                         }
                     }, 2000);
                 }
-            } catch (JSONException e) {
-                Log.e("LOG4 ERROR", e.toString());
-                e.printStackTrace();
+
             }
-        }
-    }
-    private void startLoading() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+
             @Override
-            public void run() {
-                Intent intent = new Intent(getBaseContext(), ExplanationActivity.class);
-                startActivity(intent);
-                finish();
+            protected String doInBackground(String... params) {
+                HashMap<String, String> data = new HashMap<>();
+                data.put("id", loginId);
+                data.put("pw", loginPass);
+
+                Log.e("id", data.toString());
+
+                RegisterUserClass ruc = new RegisterUserClass();
+
+                String result = ruc.sendPostRequest(LOGIN_URL, data);
+                return result;
             }
-        }, 2000);
+
+        }
+        UserLoginClass ulc = new UserLoginClass();
+        ulc.execute(userid, userpass);
     }
+
 }
+
+
 

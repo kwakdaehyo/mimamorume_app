@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:background="@drawable/grid_line">
+
+    <TextView
+        android:id="@+id/schedule_day"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:textSize="20dp"
+        android:text="날짜"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/schedule_image"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:text="설명"/>
+
+</LinearLayout>

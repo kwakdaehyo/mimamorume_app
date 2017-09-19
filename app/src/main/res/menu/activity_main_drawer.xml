@@ -3,33 +3,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <!--android:icon="@drawable/ic_menu_camera"-->
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_profile"
+            android:title="マイページ" />
+        <!--android:icon="@drawable/ic_menu_gallery"-->
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:id="@+id/nav_center"
+            android:title="ヘルプ" />
+        <!--android:icon="@drawable/ic_menu_slideshow"-->
 
-    <item android:title="Communicate">
+        <item
+            android:id="@+id/nav_logout"
+            android:title="ログアウト" />
+        <!--android:icon="@drawable/ic_menu_manage"-->
+    </group>
+    <item android:title="サポート">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_notice"
+                android:title="お知らせ" />
+            <!--android:icon="@drawable/ic_menu_share"-->
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_query"
+                android:title="1:1問い合わせ" />
+            <!--android:icon="@drawable/ic_menu_send"-->
         </menu>
     </item>
 

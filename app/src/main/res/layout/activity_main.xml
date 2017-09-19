@@ -13,21 +13,21 @@
 
         <ImageView
             android:id="@+id/imgIndex2"
-            android:src="@drawable/aaaa2"
+            android:src="@drawable/j_detail_01"
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imgIndex0"
-            android:src="@drawable/bbbb2"
+            android:src="@drawable/j_detail_02"
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imgIndex1"
-            android:src="@drawable/cccc2"
+            android:src="@drawable/j_detail_03"
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -43,14 +43,18 @@
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="보호사로그인"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:text="保護者向け"
             android:id="@+id/btn1" />
 
         <Button
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="보호자로그인"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:text="対象者向け"
             android:id="@+id/btn2" />
 
     </LinearLayout>

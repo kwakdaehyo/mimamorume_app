@@ -8,21 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!--<include-->
-        <!--layout="@layout/app_bar_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
-
-
     <RelativeLayout
         android:id="@+id/main_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -51,6 +36,8 @@
             android:layout_below="@+id/toolbar"
             android:background="?attr/colorPrimary"
             android:elevation="6dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
@@ -60,7 +47,22 @@
             android:layout_height="fill_parent"
             android:layout_below="@id/tab_layout"/>
 
+
     </RelativeLayout>
+    <!--android:layout_below="@+id/toolbar"-->
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+
+
 
 
 
